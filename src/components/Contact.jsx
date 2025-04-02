@@ -45,13 +45,13 @@ const Contact = () => {
     {
       icon: <MapPin size={20} className="text-accent-teal" />,
       title: 'Location',
-      content: 'San Francisco, CA',
+      content: 'Addis Ababa, Ethiopia',
       delay: 0.1,
     },
     {
       icon: <Mail size={20} className="text-accent-teal" />,
       title: 'Email',
-      content: 'hello@example.com',
+      content: 'ermiyas345@gmail.com',
       delay: 0.2,
     },
     {
