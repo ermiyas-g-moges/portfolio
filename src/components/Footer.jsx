@@ -58,7 +58,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a 
-                    href="https://linkedin.com" 
+                    href="https://linkedin.com/in/ermiyas-girma" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-accent-teal transition-colors duration-300 flex items-center"
@@ -102,7 +102,7 @@ const Footer = () => {
               <Github size={30} />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://linkedin.com/in/ermiyas-girma" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-accent-teal transition-colors duration-300"

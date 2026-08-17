@@ -41,6 +41,10 @@ export default {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.7' },
         },
+        cursorBlink: {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
+        },
       },
       animation: {
         glow: 'glow 2s ease-in-out infinite',
@@ -49,6 +53,7 @@ export default {
         slideInLeft: 'slideInLeft 0.4s ease-out forwards',
         slideInRight: 'slideInRight 0.4s ease-out forwards',
         pulse: 'pulse 2s ease-in-out infinite',
+        'cursor-blink': 'cursorBlink 1s step-start infinite',
       },
       transitionDuration: {
         '400': '400ms',
