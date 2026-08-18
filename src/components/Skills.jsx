@@ -1,140 +1,120 @@
-import { Code, Database, Palette, Server, Terminal, Wrench } from 'lucide-react';
+import { Code, Database, Map, Server, Smartphone, Wrench } from 'lucide-react';
 
-import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
+const skillCategories = [
+  {
+    title: 'Frontend',
+    icon: <Code size={22} className="text-accent-teal" />,
+    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Tailwind CSS'],
+    delay: 0.1,
+  },
+  {
+    title: 'Backend',
+    icon: <Server size={22} className="text-accent-teal" />,
+    skills: ['Node.js', 'Express', 'PHP', 'REST APIs', 'Authentication'],
+    featured: true,
+    delay: 0.2,
+  },
+  {
+    title: 'Databases',
+    icon: <Database size={22} className="text-accent-teal" />,
+    skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'SQLite'],
+    delay: 0.3,
+  },
+  {
+    title: 'Mobile',
+    icon: <Smartphone size={22} className="text-accent-blue" />,
+    skills: ['React Native', 'Expo'],
+    delay: 0.4,
+  },
+  {
+    title: 'Geospatial',
+    icon: <Map size={22} className="text-accent-blue" />,
+    skills: ['PostGIS', 'QGIS', 'GeoJSON', 'Spatial Queries'],
+    featured: true,
+    delay: 0.5,
+  },
+  {
+    title: 'Tools & Platforms',
+    icon: <Wrench size={22} className="text-accent-blue" />,
+    skills: ['Git', 'GitHub', 'Vite', 'npm', 'Postman', 'Vercel', 'Netlify', 'PM2', 'Supabase'],
+    delay: 0.6,
+  },
+];
+
+const familiarWith = ['Docker', 'Firebase', 'Flutter', 'Python', 'Figma'];
+
 const Skills = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      icon: <Code size={24} className="text-accent-teal" />,
-      skills: [
-        { name: 'HTML5', level: 85 },
-        { name: 'CSS3/SASS', level: 75 },
-        { name: 'JavaScript (ES6+)', level: 70 },
-        { name: 'React', level: 70 },
-        { name: 'TailwindCSS', level: 75 },
-      ],
-      delay: 0.1,
-    },
-    {
-      title: 'Backend',
-      icon: <Server size={24} className="text-accent-teal" />,
-      skills: [
-        { name: 'Node.js', level: 70 },
-        { name: 'Express', level: 70 },
-        { name: 'RESTful APIs', level: 60 },
-        { name: 'Authentication', level: 75 },
-        { name: 'Serverless', level: 70 },
-      ],
-      delay: 0.2,
-    },
-    {
-      title: 'Database',
-      icon: <Database size={24} className="text-accent-teal" />,
-      skills: [
-        { name: 'MongoDB', level: 75 },
-        { name: 'Firebase', level: 70 },
-        { name: 'SQL', level: 75 },
-      ],
-      delay: 0.3,
-    },
-    {
-      title: 'Design',
-      icon: <Palette size={24} className="text-accent-blue" />,
-      skills: [
-        { name: 'Figma', level: 75 },
-        { name: 'UI/UX', level: 70 },
-        { name: 'Responsive Design', level: 75 },
-        { name: 'Wireframing', level: 80 },
-        { name: 'Color Theory', level: 80 },
-        { name: 'Typography', level: 80 },
-      ],
-      delay: 0.4,
-    },
-    {
-      title: 'DevOps',
-      icon: <Terminal size={24} className="text-accent-blue" />,
-      skills: [
-        { name: 'Git/GitHub', level: 75 },
-        { name: 'Docker', level: 65 },
-        { name: 'Netlify/Vercel', level: 80 },
-      ],
-      delay: 0.5,
-    },
-    {
-      title: 'Tools',
-      icon: <Wrench size={24} className="text-accent-blue" />,
-      skills: [
-        { name: 'VS Code', level: 90 },
-        { name: 'Vite', level: 75 },
-        { name: 'npm', level: 70 },
-        { name: 'Chrome DevTools', level: 70 },
-      ],
-      delay: 0.6,
-    },
-  ];
-
-  const SkillBar = ({ name, level, delay }) => (
-    <div className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium text-gray-300">{name}</span>
-        <span className="text-sm text-accent-teal">{level}%</span>
-      </div>
-      <div className="w-full bg-dark-bg rounded-full h-2 overflow-hidden">
-        <div 
-          className={`h-2 rounded-full ${inView ? 'animate-slideInRight' : 'w-0'}`}
-          style={{ 
-            width: `${level}%`, 
-            animationDelay: `${delay + 0.2}s`,
-            background: `linear-gradient(90deg, var(--tw-gradient-stops))`,
-            '--tw-gradient-from': '#00ffbb',
-            '--tw-gradient-to': '#4d9fff',
-            '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-to)',
-          }}
-        ></div>
-      </div>
-    </div>
-  );
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="skills" className="py-20 px-6">
+    <section id="skills" className="py-20 px-6 bg-dark-bg">
       <div className="container mx-auto">
         <div ref={ref} className={inView ? 'animate-fadeIn' : 'opacity-0'}>
-          <h2 className="section-title mb-12">Skills</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          {/* Terminal heading */}
+          <div className="mb-2">
+            <span className="font-mono text-xs text-gray-500">$ stack --list</span>
+          </div>
+          <h2 className="section-title mb-2">Technologies I Work With</h2>
+          <p className="text-gray-400 text-sm mb-10 max-w-xl">
+            A practical toolkit built through projects, experimentation, and solving real problems.
+          </p>
+
+          {/* Skill category cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, index) => (
-              <div 
-                key={index} 
-                className={`bg-dark-card p-6 rounded-lg border border-dark-border ${inView ? 'animate-fadeIn' : 'opacity-0'}`}
+              <div
+                key={index}
+                className={`rounded-lg p-5 transition-colors duration-300 ${inView ? 'animate-fadeIn' : 'opacity-0'} ${
+                  category.featured
+                    ? 'bg-dark-card border border-accent-teal/30 shadow-[0_0_18px_-4px_rgba(0,255,187,0.12)] hover:border-accent-teal/60'
+                    : 'bg-dark-card/60 border border-dark-border/70 hover:border-accent-teal/30'
+                }`}
                 style={{ animationDelay: `${category.delay}s` }}
               >
-                <div className="flex items-center mb-6">
-                  <div className="p-3 bg-dark-bg rounded-lg mr-3">
+                {/* Card header */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2 rounded-md ${category.featured ? 'bg-accent-teal/10' : 'bg-dark-bg'}`}>
                     {category.icon}
                   </div>
-                  <h3 className="text-xl font-semibold">{category.title}</h3>
+                  <h3 className="font-semibold text-white">{category.title}</h3>
+                  {category.featured && (
+                    <span className="ml-auto font-mono text-xs text-accent-teal/60">core</span>
+                  )}
                 </div>
-                
-                <div>
-                  {category.skills.map((skill, idx) => (
-                    <SkillBar 
-                      key={idx} 
-                      name={skill.name} 
-                      level={skill.level} 
-                      delay={category.delay + (idx * 0.05)}
-                    />
+
+                {/* Skill chips */}
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 rounded-md bg-dark-bg border border-dark-border text-sm text-gray-300 hover:border-accent-teal/50 hover:text-accent-teal transition-colors duration-200"
+                    >
+                      {skill}
+                    </span>
                   ))}
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Familiar with */}
+          <div className={`mt-10 ${inView ? 'animate-fadeIn' : 'opacity-0'}`} style={{ animationDelay: '0.7s' }}>
+            <p className="font-mono text-xs text-gray-500 mb-3 uppercase tracking-widest">// familiar with</p>
+            <div className="flex flex-wrap gap-2">
+              {familiarWith.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 rounded-md bg-dark-card/30 border border-dark-border/40 text-sm text-gray-500 hover:text-gray-300 hover:border-dark-border transition-colors duration-200"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

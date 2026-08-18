@@ -63,18 +63,21 @@ const Contact = () => {
       icon: <MapPin size={20} className="text-accent-teal" />,
       title: 'Location',
       content: 'Addis Ababa, Ethiopia',
+      href: null,
       delay: 0.1,
     },
     {
       icon: <Mail size={20} className="text-accent-teal" />,
       title: 'Email',
       content: 'ermiyas345@gmail.com',
+      href: 'mailto:ermiyas345@gmail.com',
       delay: 0.2,
     },
     {
       icon: <Phone size={20} className="text-accent-teal" />,
       title: 'Phone',
       content: '+251-93175230',
+      href: 'tel:+251931752307',
       delay: 0.3,
     },
   ];
@@ -103,10 +106,9 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* ── Left: info ── */}
             <div className="lg:col-span-2">
-              <h3 className="text-2xl font-semibold mb-6 text-white">Get In Touch</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-white">Let's Build Something </h3>
               <p className="text-gray-300 mb-8">
-                Feel free to reach out to me with any questions or opportunities. I'm always open to discussing
-                new projects, creative ideas, or opportunities to be part of your vision.
+                Have a project in mind, an opportunity, or just want to talk about an idea? Send me a message.
               </p>
 
               <div className="space-y-6">
@@ -121,14 +123,23 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-white">{item.title}</h4>
-                      <p className="text-gray-300">{item.content}</p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="text-gray-300 hover:text-accent-teal transition-colors duration-200"
+                        >
+                          {item.content}
+                        </a>
+                      ) : (
+                        <p className="text-gray-300">{item.content}</p>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8">
-                <h4 className="font-semibold mb-4 text-white">Follow Me</h4>
+                <h4 className="font-semibold mb-4 text-white">Find Me Online</h4>
                 <div className="flex space-x-4">
                   {socialLinks.map((link, index) => (
                     <a
@@ -158,13 +169,14 @@ const Contact = () => {
               >
                 {submitSuccess && (
                   <div className="mb-6 p-4 bg-accent-teal/10 text-accent-teal rounded-md border border-accent-teal/30">
-                    Thank you! Your message has been sent. I'll get back to you soon.
+                    Message sent successfully. I'll get back to you as soon as I can.
                   </div>
                 )}
 
                 {submitError && (
                   <div className="mb-6 p-4 bg-red-500/10 text-red-400 rounded-md border border-red-500/30">
                     {submitError}
+                    Couldn't send the message. Please try again or contact me directly.
                   </div>
                 )}
 
@@ -203,7 +215,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
-                      Phone
+                      Phone (Optional)
                     </label>
                     <input
                       type="tel"
@@ -211,7 +223,7 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      required
+                      optional
                       className="w-full px-4 py-2 bg-dark-bg border border-dark-border rounded-md focus:outline-none focus:ring-2 focus:ring-accent-teal focus:border-transparent text-white"
                       placeholder="09/07-xxxxxxxx"
                     />
