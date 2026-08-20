@@ -1,17 +1,31 @@
-import { ExternalLink, Github, X } from 'lucide-react';
-import { useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ExternalLink, Github, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { STATUS_STYLES } from '../data/projects';
 
 const ProjectModal = ({ project, onClose }) => {
-  // Close on Escape key
+  const [imgIndex, setImgIndex] = useState(0);
+  const images = project?.images ?? [];
+  const hasMultiple = images.length > 1;
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
+
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
 
+  // Reset image index when project changes
+  useEffect(() => { setImgIndex(0); }, [project?.id]);
+
   if (!project) return null;
+
+  const prevImg = () => setImgIndex((i) => (i - 1 + images.length) % images.length);
+  const nextImg = () => setImgIndex((i) => (i + 1) % images.length);
 
   return (
     <div
@@ -25,13 +39,50 @@ const ProjectModal = ({ project, onClose }) => {
         className="relative bg-dark-card border border-dark-border rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Image */}
-        <div className="relative h-52 overflow-hidden rounded-t-xl">
+        {/* Image slider */}
+        <div className="relative overflow-hidden rounded-t-xl bg-dark-bg">
+          {/* Current image */}
           <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
+            key={imgIndex}
+            src={images[imgIndex]}
+            alt={`${project.title} screenshot ${imgIndex + 1}`}
+            className="w-full max-h-[60vh] object-contain"
           />
+
+          {/* Prev / Next arrows — only when multiple images */}
+          {hasMultiple && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prevImg(); }}
+                aria-label="Previous image"
+                className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-dark-bg/80 border border-dark-border text-gray-300 hover:text-white transition-colors duration-200"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); nextImg(); }}
+                aria-label="Next image"
+                className="absolute right-10 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-dark-bg/80 border border-dark-border text-gray-300 hover:text-white transition-colors duration-200"
+              >
+                <ChevronRight size={18} />
+              </button>
+
+              {/* Dot indicators */}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={(e) => { e.stopPropagation(); setImgIndex(i); }}
+                    aria-label={`Go to image ${i + 1}`}
+                    className={`w-1.5 h-1.5 rounded-full transition-colors duration-200 ${
+                      i === imgIndex ? 'bg-accent-teal' : 'bg-gray-500 hover:bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
           {/* Close button */}
           <button
             onClick={onClose}

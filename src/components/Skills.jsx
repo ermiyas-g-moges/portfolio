@@ -32,7 +32,6 @@ const skillCategories = [
     title: 'Geospatial',
     icon: <Map size={22} className="text-accent-blue" />,
     skills: ['PostGIS', 'QGIS', 'GeoJSON', 'Spatial Queries'],
-    featured: true,
     delay: 0.5,
   },
   {

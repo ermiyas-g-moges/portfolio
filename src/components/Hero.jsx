@@ -1,6 +1,6 @@
 import { ArrowDown, Github, Linkedin } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-
+import myPicture from '../assets/EG.webp';
 import { Link as ScrollLink } from 'react-scroll';
 import { useInView } from 'react-intersection-observer';
 
@@ -193,9 +193,9 @@ const Hero = () => {
 
                 <div className="w-72 md:w-80 h-80 md:h-[28rem] rounded-xl overflow-hidden border border-accent-teal/20 shadow-2xl">
                   <img
-                    src="https://placehold.co/320x448/0d1117/64ffda?text=Ermiyas"
+                    src={myPicture}
                     alt="Ermiyas Girma"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
               </div>

@@ -223,7 +223,6 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      optional
                       className="w-full px-4 py-2 bg-dark-bg border border-dark-border rounded-md focus:outline-none focus:ring-2 focus:ring-accent-teal focus:border-transparent text-white"
                       placeholder="09/07-xxxxxxxx"
                     />

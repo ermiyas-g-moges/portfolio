@@ -89,12 +89,12 @@ const Projects = () => {
                     {/* Image */}
                     <div className="relative h-60 overflow-hidden">
                       <img
-                        src={project.image}
+                        src={project.images[0]}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       />
                       {/* Status badge over image */}
-                      <span className={`absolute top-3 left-3 font-mono text-xs px-2 py-0.5 rounded border backdrop-blur-sm ${STATUS_STYLES[project.status]}`}>
+                      <span className={`absolute bottom-3 right-3 font-mono text-xs px-2 py-0.5 rounded border backdrop-blur-sm ${STATUS_STYLES[project.status]}`}>
                         {project.status}
                       </span>
                     </div>
