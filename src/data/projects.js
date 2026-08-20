@@ -4,11 +4,11 @@ export const projects = [
     title: 'SSGI Geospatial Data Platform',
     status: 'Built',
     description:
-      'A data commerce platform for the Space Science and Geospatial Institute, enabling customers to request and purchase geodetic control points (zero, first, and second order) online — eliminating the need for in-person office visits.',
-    highlights: [
+      'A web-based GIS platform for the management and sale of geodetic points, for the Space Science and Geospatial Institute, enabling customers to request and purchase geodetic control points online — eliminating the need for in-person office visits.',
+      
+      highlights: [
       'REST API design',
       'Geospatial data with PostGIS',
-      'Role-based access control',
       'Institutional workflow',
     ],
     tags: ['React', 'Node.js', 'PostgreSQL', 'PostGIS', 'Tailwind'],
@@ -26,14 +26,14 @@ export const projects = [
     title: 'DMU Campus Map',
     status: 'In Progress',
     description:
-      'A full campus navigation system for Debre Markos University, allowing students, staff, and guests to locate buildings, offices, and services while giving administrators control over location data.',
+      'A full campus navigation system for Debre Markos University, with a web-based administration platform for managing buildings, offices, and locations. Allowing students, staff, and guests to locate buildings, offices with ease.',
     highlights: [
       'Admin CMS for location management',
       'Interactive campus map',
       'Mobile-first with React Native',
-      'Spatial queries with PostGIS',
+      'Realtime tracking with Docker',
     ],
-    tags: ['React Native', 'Node.js', 'PostgreSQL', 'PostGIS', 'Supabase', 'React'],
+    tags: ['React Native', 'Node.js', 'PostgreSQL', 'Supabase', 'React'],
     liveLink: null,
     githubLink: null,
     images: [
@@ -49,12 +49,10 @@ export const projects = [
     title: 'Olla Ethiopia',
     status: 'Collab',
     description:
-      'A location-based discovery app for Ethiopia — think Yelp for local businesses and services. Hired as a backend engineer and web admin developer. The app is live on the Play Store.',
+      'A lifestyle and discovery platform that connects users with events, places, and local services. Contributed to the development of backend APIs and web-based administrative interfaces, while collaborating on production features.',
     highlights: [
-      'Location-based querying',
       'Backend API development',
       'Web admin panel',
-      'Production-deployed on Play Store',
     ],
     tags: ['Node.js', 'MongoDB', 'React'],
     liveLink: null,
@@ -73,7 +71,7 @@ export const projects = [
     title: 'House Rental System',
     status: 'Built',
     description:
-      'A completed full-stack project that digitises the house rental process — tenants can search for properties and contact landlords without the manual back-and-forth. The project is not currently publicly deployed.',
+      'A completed full-stack project that handles the house rental process — tenants can search for properties and contact landlords without the manual back-and-forth. The project is not currently publicly deployed.',
     highlights: [
       'Property listing & search',
       'Tenant and landlord flows',

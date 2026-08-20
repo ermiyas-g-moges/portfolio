@@ -76,14 +76,14 @@ const Projects = () => {
                 return (
                   <button
                     key={project.id}
-                    onClick={() => offset === 0 && setSelected(project)}
+                    onClick={() => offset === 0 && project.status !== 'Concept' && setSelected(project)}
                     className="absolute w-full max-w-xl card overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal"
                     style={{
                       transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease',
-                      cursor: offset === 0 ? 'pointer' : 'default',
+                      cursor: offset === 0 && project.status !== 'Concept' ? 'pointer' : 'default',
                       ...style,
                     }}
-                    aria-label={offset === 0 ? `View details for ${project.title}` : undefined}
+                    aria-label={offset === 0 && project.status !== 'Concept' ? `View details for ${project.title}` : undefined}
                     tabIndex={offset === 0 ? 0 : -1}
                   >
                     {/* Image */}
@@ -99,8 +99,15 @@ const Projects = () => {
                       </span>
                     </div>
 
-                    {/* Minimal card info */}
-                    <div className="p-4">
+                    {/* Minimal card info — blurred for concepts */}
+                    <div className="relative p-4">
+                      {/* Concept overlay */}
+                      {project.status === 'Concept' && (
+                        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-dark-bg/60 backdrop-blur-sm rounded-b-lg">
+                          <span className="font-mono text-xs text-accent-blue/80 uppercase tracking-widest mb-1">// concept</span>
+                          <p className="font-mono text-sm text-gray-300 text-center px-4">Idea in progress</p>
+                        </div>
+                      )}
                       <h3 className="text-base font-semibold text-white mb-2 leading-snug">{project.title}</h3>
                       <div className="flex flex-wrap gap-1.5">
                         {project.tags.map((tag, idx) => (
@@ -109,7 +116,7 @@ const Projects = () => {
                           </span>
                         ))}
                       </div>
-                      {offset === 0 && (
+                      {offset === 0 && project.status !== 'Concept' && (
                         <p className="font-mono text-xs text-gray-500 mt-3">click to view details →</p>
                       )}
                     </div>
